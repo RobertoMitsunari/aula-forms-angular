@@ -1,0 +1,65 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="Nome" name="nome" [(ngModel)]="usuario.nome" required
+        #nome="ngModel" [ngClass]="aplicaCssErro(nome)">
+        <div class="invalid-feedback" *ngIf="!nome.valid && nome.touched">
+          Coloque um nome.
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" [(ngModel)]="usuario.email" 
+      required email #email="ngModel" [ngClass]="aplicaCssErro(email)">
+      <div class="invalid-feedback" *ngIf="!email.valid && email.touched">
+        Coloque um email.
+      </div>
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div ngModelGroup="endereco" >
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="CEP" class="form-label">CEP</label>
+        <input type="text" class="form-control" id="CEP" name="cep" ngModel #cep="ngModel" required
+        [ngClass]="aplicaCssErro(cep)" (blur)="consultaCEP($event.target.value, f)">
+        <campo-erro [mostrar]="verificaValidTouched(cep)" erro='Cep inválido'></campo-erro>
+      </div>
+      <div class="form-group col-md-2">
+         <label for="Numero" class="form-label">Número</label>
+        <input type="number" class="form-control" id="Number" name="number" ngModel #number="ngModel" required
+        [ngClass]="aplicaCssErro(number)">
+      </div>
+      <div class="form-group col-md-8">
+        <label for="complemento" class="form-label">Complemento</label>
+       <input type="text" class="form-control" id="Complemento" name="complemento" ngModel #complemento="ngModel" required
+       [ngClass]="aplicaCssErro(complemento)">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="rua" class="form-label">Rua</label>
+        <input type="text" class="form-control" id="Rua" name="rua" ngModel #rua="ngModel" required
+        [ngClass]="aplicaCssErro(rua)">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="bairro" class="form-label">Bairro</label>
+        <input type="text" class="form-control" id="Bairro" name="bairro" ngModel #bairro="ngModel" required
+        [ngClass]="aplicaCssErro(bairro)">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input type="text" class="form-control" id="Cidade" name="Cidade" ngModel #cidade="ngModel" required
+        [ngClass]="aplicaCssErro(cidade)">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="estado" class="form-label">Estado</label>
+        <input type="text" class="form-control" id="Estado" name="Estado" ngModel #estado="ngModel" required
+        [ngClass]="aplicaCssErro(estado)">
+      </div>
+    </div>
+  </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+    <app-form-debug [form]="f"></app-form-debug>
+  </form>
