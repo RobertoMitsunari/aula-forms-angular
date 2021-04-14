@@ -55,8 +55,11 @@
         </div>
         <div class="form-group col-md-4">
           <label for="estado" class="form-label">Estado</label>
-          <input type="text" class="form-control" id="estado"  formControlName="estado"
-          [ngClass]="aplicaCssErro('endereco.estado')">
+          <!--input type="text" class="form-control" id="estado"  formControlName="estado"
+          [ngClass]="aplicaCssErro('endereco.estado')"-->
+          <select class="form-control" id="estado" formControlName="estado">
+            <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{estado.nome}}</option>
+          </select>
         </div>
       </div>
     </div>
